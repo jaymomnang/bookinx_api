@@ -11,7 +11,7 @@ var paymentSchema = new Schema({
         type: String,
         Required: 'Kindly enter a description for the quotes'
     },
-    quote_amount: {
+    amount: {
         type: Number,
         default: 0.00
     },
@@ -29,34 +29,6 @@ var paymentSchema = new Schema({
             Required: 'Kindly enter customer name'
         }],
     },
-    items: {
-        product_id: {
-            type: String
-        },
-        description: [{
-            type: String
-        }],
-        amount: [{
-            type: Number,
-            default: 0.00
-        }],
-        qty: [{
-            type: Number,
-            default: 0.00
-        }],
-        total: [{
-            type: Number,
-            default: 0.00
-        }],
-        discount: [{
-            type: Number,
-            default: 0.00
-        }],
-        vat: [{
-            type: Number,
-            default: 0.00
-        }],
-    },
     Created_date: {
         type: Date,
         default: Date.now
@@ -64,7 +36,7 @@ var paymentSchema = new Schema({
     status: {
         type: [{
             type: String,
-            enum: ['pending', 'invoiced']
+            enum: ['pending', 'paid']
         }],
         default: ['pending']
     }

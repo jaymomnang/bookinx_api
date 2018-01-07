@@ -1,10 +1,10 @@
 'use strict';
 module.exports = function(app) {
     var booking = require('../controllers/bookingController');
-    var receipts = require('../controllers/receiptsController');
+    var flights = require('../controllers/flightsController');
     var schedules = require('../controllers/schedulesController');
     var customers = require('../controllers/customersController');
-    var quotes = require('../controllers/quotesController');
+    var payments = require('../controllers/paymentController');
     var users = require('../controllers/userController');
 
     // booking Routes
@@ -17,25 +17,25 @@ module.exports = function(app) {
         .put(booking.update_booking)
         .delete(booking.delete_booking);
 
-    // receipts Routes
-    app.route('/receipt')
-        .get(receipts.list_all_receipts)
-        .post(receipts.create_receipt);
+    // flights Routes
+    app.route('/flight')
+        .get(flights.list_all_flights)
+        .post(flights.create_flight);
 
-    app.route('/receipt/:receipt_id')
-        .get(receipts.get_receipt)
-        .put(receipts.update_receipt)
-        .delete(receipts.delete_receipt);
+    app.route('/flight/:flight_id')
+        .get(flights.get_flight)
+        .put(flights.update_flight)
+        .delete(flights.delete_flight);
 
-    // quotes Routes
-    app.route('/quote')
-        .get(quotes.list_all_quotes)
-        .post(quotes.create_quote);
+    // payments Routes
+    app.route('/payment')
+        .get(payments.list_all_payments)
+        .post(payments.create_payment);
 
-    app.route('/quotes/:quote_id')
-        .get(quotes.get_quote)
-        .put(quotes.update_quote)
-        .delete(quotes.delete_quote);
+    app.route('/payments/:payment_id')
+        .get(payments.get_payment)
+        .put(payments.update_payment)
+        .delete(payments.delete_payment);
 
     // schedules Routes
     app.route('/schedule')
