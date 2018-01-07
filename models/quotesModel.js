@@ -2,12 +2,12 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var quoteSchema = new Schema({
-    quote_id: {
+var paymentSchema = new Schema({
+    payment_id: {
         type: String,
         Required: 'Kindly enter the quotes item'
     },
-    description: {
+    booking_id: {
         type: String,
         Required: 'Kindly enter a description for the quotes'
     },
@@ -70,4 +70,4 @@ var quoteSchema = new Schema({
     }
 });
 
-module.exports = mongoose.model('quotes', quoteSchema);
+module.exports = mongoose.model('payments', paymentSchema);

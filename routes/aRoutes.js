@@ -1,21 +1,21 @@
 'use strict';
 module.exports = function(app) {
-    var invoice = require('../controllers/invoiceController');
+    var booking = require('../controllers/bookingController');
     var receipts = require('../controllers/receiptsController');
     var schedules = require('../controllers/schedulesController');
     var customers = require('../controllers/customersController');
     var quotes = require('../controllers/quotesController');
     var users = require('../controllers/userController');
 
-    // invoice Routes
-    app.route('/invoice')
-        .get(invoice.list_all_invoices)
-        .post(invoice.create_invoice);
+    // booking Routes
+    app.route('/booking')
+        .get(booking.list_all_bookings)
+        .post(booking.create_booking);
 
-    app.route('/invoice/:invoice_id')
-        .get(invoice.get_invoice)
-        .put(invoice.update_invoice)
-        .delete(invoice.delete_invoice);
+    app.route('/booking/:booking_id')
+        .get(booking.get_booking)
+        .put(booking.update_booking)
+        .delete(booking.delete_booking);
 
     // receipts Routes
     app.route('/receipt')
