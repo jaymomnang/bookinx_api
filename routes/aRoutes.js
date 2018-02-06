@@ -1,7 +1,7 @@
 'use strict';
 module.exports = function(app) {
     var booking = require('../controllers/bookingController');
-    var flights = require('../controllers/flightsController');
+    var Vessels = require('../controllers/VesselsController');
     var schedules = require('../controllers/schedulesController');
     var customers = require('../controllers/customersController');
     var payments = require('../controllers/paymentController');
@@ -17,15 +17,15 @@ module.exports = function(app) {
         .put(booking.update_booking)
         .delete(booking.delete_booking);
 
-    // flights Routes
-    app.route('/flight')
-        .get(flights.list_all_flights)
-        .post(flights.create_flight);
+    // Vessels Routes
+    app.route('/Vessel')
+        .get(Vessels.list_all_Vessels)
+        .post(Vessels.create_Vessel);
 
-    app.route('/flight/:flight_id')
-        .get(flights.get_flight)
-        .put(flights.update_flight)
-        .delete(flights.delete_flight);
+    app.route('/Vessel/:Vessel_id')
+        .get(Vessels.get_Vessel)
+        .put(Vessels.update_Vessel)
+        .delete(Vessels.delete_Vessel);
 
     // payments Routes
     app.route('/payment')

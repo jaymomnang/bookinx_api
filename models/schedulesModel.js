@@ -8,13 +8,9 @@ var schedulesSchema = new Schema({
         type: String,
         Required: 'Kindly enter the schedule Id'
     },
-    flight: {
+    vessel: {
         type: String,
         Required: 'Kindly enter the flight/vessel no'
-    },
-    price: {
-        type: Number,
-        default: 0.00
     },
     departure_port: {
         type: String,
@@ -43,15 +39,23 @@ var schedulesSchema = new Schema({
     total_seats: {
         type: Number,
         default: 0
-    },    
+    },
     Created_date: {
         type: Date,
         default: Date.now
     },
+    pricing: {
+      class:{
+        type: String
+      },
+      amount:{
+        type: Number
+      }
+    },
     status: {
         type: [{
             type: String,
-            enum: ['departed', 'delayed', 'on-time']
+            enum: ['departed', 'delayed', 'on-time', 'pending']
         }],
         default: ['on-time']
     }
