@@ -5,6 +5,7 @@ module.exports = function(app) {
     var schedules = require('../controllers/schedulesController');
     var customers = require('../controllers/customersController');
     var payments = require('../controllers/paymentController');
+    var seatClass = require('../controllers/seatClassController');
     var users = require('../controllers/userController');
 
     // booking Routes
@@ -26,6 +27,16 @@ module.exports = function(app) {
         .get(Vessels.get_Vessel)
         .put(Vessels.update_Vessel)
         .delete(Vessels.delete_Vessel);
+
+    // Vessels Routes
+    app.route('/class')
+        .get(seatClass.list_all_classes)
+        .post(seatClass.create_class);
+
+    app.route('/class/:class_id')
+        .get(seatClass.get_class)
+        .put(seatClass.update_class)
+        .delete(seatClass.delete_class);
 
     // payments Routes
     app.route('/payment')
