@@ -1,11 +1,12 @@
 'use strict';
-module.exports = function(app) {
+module.exports = function (app) {
     var booking = require('../controllers/bookingController');
     var Vessels = require('../controllers/VesselsController');
     var schedules = require('../controllers/schedulesController');
     var customers = require('../controllers/customersController');
     var payments = require('../controllers/paymentController');
     var seatClass = require('../controllers/seatClassController');
+    var pricing = require('../controllers/pricingController');
     var users = require('../controllers/userController');
 
     // booking Routes
@@ -28,7 +29,7 @@ module.exports = function(app) {
         .put(Vessels.update_Vessel)
         .delete(Vessels.delete_Vessel);
 
-    // Vessels Routes
+    // Seat Classes Routes
     app.route('/class')
         .get(seatClass.list_all_classes)
         .post(seatClass.create_class);
@@ -37,6 +38,16 @@ module.exports = function(app) {
         .get(seatClass.get_class)
         .put(seatClass.update_class)
         .delete(seatClass.delete_class);
+
+    // Pricing Routes
+    app.route('/price')
+        .get(pricing.list_all_prices)
+        .post(pricing.create_prices);
+
+    app.route('/price/:price_id')
+        .get(pricing.get_prices)
+        .put(pricing.update_prices)
+        .delete(pricing.delete_prices);
 
     // payments Routes
     app.route('/payment')

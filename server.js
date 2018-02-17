@@ -8,6 +8,7 @@ var express = require('express'),
     customers = require('./models/customersModel'),
     schedules = require('./models/schedulesModel'),
     seatClass = require('./models/seatClassModel'),
+    pricing = require('./models/pricingModel'),
     users = require('./models/usersModel'),
     bodyParser = require('body-parser');
 
