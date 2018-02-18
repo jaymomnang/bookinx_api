@@ -6,6 +6,7 @@ module.exports = function (app) {
     var customers = require('../controllers/customersController');
     var payments = require('../controllers/paymentController');
     var seatClass = require('../controllers/seatClassController');
+    var ports = require('../controllers/portsController');
     var pricing = require('../controllers/pricingController');
     var users = require('../controllers/userController');
 
@@ -48,6 +49,16 @@ module.exports = function (app) {
         .get(pricing.get_prices)
         .put(pricing.update_prices)
         .delete(pricing.delete_prices);
+
+    // Ports Routes
+    app.route('/ports')
+        .get(ports.list_all_ports)
+        .post(ports.create_port);
+
+    app.route('/ports/:port_id')
+        .get(ports.get_port)
+        .put(ports.update_port)
+        .delete(ports.delete_port);
 
     // payments Routes
     app.route('/payment')
