@@ -11,26 +11,18 @@ var pricingSchema = new Schema({
         type: String,
         Required: 'Kindly enter name'
     },
-    departure_port: {
+    seatClass: {
         type: String
     },
-    destination: {
-        type: String
+    age: {
+        type: String,
+        default: 'Adult'
     },
-    pricing: {
-        seatClass: {
-            type: String
-        },
-        age: {
-            type: String,
-            default: 'Adult'
-        },
-        non_resident_price: {
-            type: Number
-        },
-        resident_price: {
-            type: Number
-        }
+    non_resident_price: {
+        type: Number
+    },
+    resident_price: {
+        type: Number
     },
     Created_date: {
         type: Date,

@@ -16,7 +16,11 @@ exports.create_prices = function (req, res) {
     new_price.save(function (err, new_prices) {
         if (err) {
             res.send(err);
-            res.json(new_prices);
+            pricing.find({}, function (err, prices) {
+                if (err)
+                    res.send(err);
+                res.json(prices);
+            });
         }
     });
 };
