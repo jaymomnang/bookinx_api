@@ -3,10 +3,10 @@ var mongoose = require('mongoose'),
 pricing = mongoose.model('pricing');
 
 exports.list_all_prices = function(req, res) {
-    pricing.find({}, function(err, seatpriceses) {
+    pricing.find({}, function(err, prices) {
         if (err)
             res.send(err);
-        res.json(seatpriceses);
+        res.json(prices);
     });
 };
 

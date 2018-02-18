@@ -21,6 +21,10 @@ var pricingSchema = new Schema({
         seatClass: {
             type: String
         },
+        age: {
+            type: String,
+            default: 'Adult'
+        },
         non_resident_price: {
             type: Number
         },
