@@ -43,15 +43,7 @@ var schedulesSchema = new Schema({
     Created_date: {
         type: Date,
         default: Date.now
-    },
-    pricing: {
-      class:{
-        type: String
-      },
-      amount:{
-        type: Number
-      }
-    },
+    },    
     status: {
         type: [{
             type: String,
