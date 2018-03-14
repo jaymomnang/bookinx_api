@@ -28,6 +28,9 @@
     "dependencies": {
         "async": "^2.5.0",
         "express": "^4.15.3",
-        "mongoose": "^4.13.5"
+        "firebase": "^4.11.0",
+        "g": "^2.0.1",
+        "mongoose": "^4.13.5",
+        "npm": "^5.7.1"
     }
 }
