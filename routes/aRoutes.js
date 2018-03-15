@@ -72,7 +72,7 @@ module.exports = function (app) {
 
     // schedules Routes
     app.route('/schedule')
-        .get(schedules.list_all_schedules)
+        .get(schedules.getMostRecent)
         .post(schedules.create_schedule);
 
     app.route('/schedule/:schedule_id')

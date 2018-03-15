@@ -25,7 +25,7 @@ exports.create_schedule = function (req, res) {
             last_scheduleId = data.schedule_id;
         }
 
-        new_schedule.schedule_id = getNewtaskId(last_scheduleId);
+        new_schedule.schedule_id = getNewID(last_scheduleId, "SCH");
 
         new_schedule.save(function (err, new_schedule) {
             if (err) res.send(err);
@@ -40,13 +40,22 @@ exports.create_schedule = function (req, res) {
 
 };
 
-exports.get_schedule = function (req, res) {
-    schedules.findById(req.params.schedule_id, function (err, schedule) {
+exports.getMostRecent = function (req, res) {
+    schedules.find({}).sort({schedule_id: -1}).limit(8).exec(function (err, schedule) {
         if (err)
             res.send(err);
         res.json(schedule);
     });
 };
+
+exports.getTrips = function (req, res) {
+    schedules.find({}).sort({departure_date: -1}).limit(4).exec(function (err, schedule) {
+        if (err)
+            res.send(err);
+        res.json(schedule);
+    });
+};
+
 
 exports.update_schedule = function (req, res) {
     schedules.findOneAndUpdate({
@@ -78,15 +87,3 @@ exports.delete_schedule = function (req, res) {
     });
 };
 
-//internally generated numbers for attendance records.
-var getNewtaskId = function (currentID) {
-    var pos = Number(currentID.substring(3, 10)) + 1;
-    var l = pos.toString().length;
-    var nxt = "SCH";
-
-    for (var i = 0; i + l < 7; i++) {
-        nxt = nxt + "0";
-    }
-
-    return nxt + pos.toString();
-};
