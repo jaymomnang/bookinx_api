@@ -40,8 +40,16 @@ exports.create_schedule = function (req, res) {
 
 };
 
+exports.get_schedule = function(req, res) {
+    schedules.findById(req.params.schedule_id, function(err, schedule) {
+        if (err)
+            res.send(err);
+        res.json(schedule);
+    });
+};
+
 exports.getMostRecent = function (req, res) {
-    schedules.find({}).sort({schedule_id: -1}).limit(8).exec(function (err, schedule) {
+    schedules.find({}).sort({schedule_id: -1}).limit(5).exec(function (err, schedule) {
         if (err)
             res.send(err);
         res.json(schedule);
