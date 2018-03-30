@@ -75,6 +75,9 @@ module.exports = function (app) {
         .get(schedules.getMostRecent)
         .post(schedules.create_schedule);
 
+    app.route('/schedule/:getTrips/:single')
+        .post(schedules.getTrips);
+
     app.route('/schedule/:schedule_id')
         .get(schedules.get_schedule)
         .put(schedules.update_schedule)

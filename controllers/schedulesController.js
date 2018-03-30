@@ -40,8 +40,8 @@ exports.create_schedule = function (req, res) {
 
 };
 
-exports.get_schedule = function(req, res) {
-    schedules.findById(req.params.schedule_id, function(err, schedule) {
+exports.get_schedule = function (req, res) {
+    schedules.findById(req.params.schedule_id, function (err, schedule) {
         if (err)
             res.send(err);
         res.json(schedule);
@@ -49,7 +49,7 @@ exports.get_schedule = function(req, res) {
 };
 
 exports.getMostRecent = function (req, res) {
-    schedules.find({}).sort({schedule_id: -1}).limit(5).exec(function (err, schedule) {
+    schedules.find({}).sort({ schedule_id: -1 }).limit(5).exec(function (err, schedule) {
         if (err)
             res.send(err);
         res.json(schedule);
@@ -57,24 +57,39 @@ exports.getMostRecent = function (req, res) {
 };
 
 exports.getTrips = function (req, res) {
-    schedules.find({}).sort({departure_date: -1}).limit(4).exec(function (err, schedule) {
-        if (err)
-            res.send(err);
+    var new_schedule = new schedules(req.body);
+    var d1, d2;
+    var dt = new_schedule.departure_date.toString().substring(4, 24);
+
+    d1 = new Date(dt);
+    d2 = new Date(dt);
+    d2.setDate(d2.getDate() - 1);
+
+    schedules.find({ 'departure_date': { "$gte": d2, "$lt": d1 }, 'departure_port': new_schedule.departure_port, 'destination': new_schedule.destination, }, function (err, schedule) {
+        if (err) return handleError(err);
         res.json(schedule);
     });
 };
 
+exports.getAvailableTrip = function (req, res) {
+    schedules.find({}).sort({ departure_date: -1 }).limit(4).exec(function (err, schedule) {
+        if (err)
+            res.send(err);
+        res.json(schedule);
+    });
+
+};
 
 exports.update_schedule = function (req, res) {
     schedules.findOneAndUpdate({
         schedule_id: req.params.scheduleId
     }, req.body, {
-        new: true
-    }, function (err, schedule) {
-        if (err)
-            res.send(err);
-        res.json(schedule);
-    });
+            new: true
+        }, function (err, schedule) {
+            if (err)
+                res.send(err);
+            res.json(schedule);
+        });
 };
 
 exports.delete_schedule = function (req, res) {
