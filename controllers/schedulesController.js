@@ -64,8 +64,10 @@ exports.getTrips = function (req, res) {
     d1 = new Date(dt);
     d2 = new Date(dt);
     d2.setDate(d2.getDate() - 1);
-
-    schedules.findOne({ 'departure_date': { "$gte": d2, "$lt": d1 }, 'departure_port': new_schedule.departure_port, 'destination': new_schedule.destination, }, function (err, schedule) {
+    
+    
+    
+    schedules.find({ 'departure_date': { "$gte": d2, "$lt": d1 }, 'departure_port': new_schedule.departure_port, 'destination': new_schedule.destination, }, function (err, schedule) {
         if (err) return handleError(err);
         res.json(schedule);
     });
