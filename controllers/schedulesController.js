@@ -57,16 +57,11 @@ exports.getMostRecent = function (req, res) {
 };
 
 exports.getTrips = function (req, res) {
-    var new_schedule = new schedules(req.body);
-    new_schedule.departure_date = new_schedule.departure_date.setDate(new_schedule.departure_date.getDate() + 1);
-    var d1, d2;
-    var dt = new_schedule.departure_date.toString().substring(4, 24);
-
-    d1 = new Date(dt);
-    d2 = new Date(dt);
-    d2.setDate(d2.getDate() - 1);
+    var d1 = new Date(req.params.departure_date.substring(0, 10));
+    var d2 = new Date(req.params.departure_date.substring(0, 10));
+    d2.setDate(d2.getDate() + 1);
     
-    schedules.find({ 'departure_date': { "$gte": d2, "$lt": d1 }, 'departure_port': new_schedule.departure_port, 'destination': new_schedule.destination, }, function (err, schedule) {
+    schedules.find({ 'departure_date': { "$gte": d1, "$lt": d2 }, 'departure_port': req.params.departure_port, 'destination': req.params.destination }, function (err, schedule) {
         if (err) return handleError(err);
         res.json(schedule);
     });
