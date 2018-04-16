@@ -19,10 +19,10 @@ var UserSchema = new Schema({
         type: String,
         Required: 'Kindly enter your password'
     },
-    companyname: {
+    id_type: {
         type: String
     },
-    business: {
+    id_no: {
         type: String
     },
     DateCreated: {
@@ -32,14 +32,7 @@ var UserSchema = new Schema({
     lastLoginDate: {
         type: Date,
         default: Date.now
-    },
-    status: {
-        type: [{
-            type: String,
-            enum: ['active', 'inactive', 'suspended']
-        }],
-        default: ['inactive']
-    },
+    },    
     role: {
         type: String,
         default: 'subscriberAdmin'
