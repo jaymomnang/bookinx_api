@@ -11,6 +11,10 @@ var UserSchema = new Schema({
         type: String,
         Required: 'Kindly enter your firstname'
     },
+    middlename: {
+        type: String,
+        Required: 'Kindly enter your middlename'
+    },
     lastname: {
         type: String,
         Required: 'Kindly enter your lastname'
@@ -18,6 +22,9 @@ var UserSchema = new Schema({
     pwd: {
         type: String,
         Required: 'Kindly enter your password'
+    },
+    resident: {
+        type: String
     },
     id_type: {
         type: String

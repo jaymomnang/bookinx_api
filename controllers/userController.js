@@ -41,7 +41,7 @@ exports.add_new_user = function(req, res) {
 
 exports.authenticate = function(req, res) {
     var password = getHash(req.params.pwd);
-    User.find({ email: req.params.email, pwd: password }, function(err, user) {
+    User.findOne({ email: req.params.email, pwd: password }, function(err, user) {
         if (err)
             res.send(err);
         res.json(user);
